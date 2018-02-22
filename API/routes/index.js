@@ -15,8 +15,10 @@ router.get('/ListAvailabilities', async (req, res) => {
     res.json(plop);
 });
 
-router.get('/ReadAvailability', (req, res) => {
-    res.json('OK');
+router.get('/ReadAvailability/:id', async (req, res) => {
+    const RESContract = await RES;
+    const plop = await RESContract.readOffer(req.params.id);
+    res.json(plop);
 });
 
 router.post('/requestReservation', (req, res) => {

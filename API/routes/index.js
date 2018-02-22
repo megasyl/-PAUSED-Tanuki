@@ -9,8 +9,10 @@ router.post('/publishAvailability', async (req, res) => {
     res.json(plop);
 });
 
-router.get('/ListAvailabilities', (req, res) => {
-    res.json('OK');
+router.get('/ListAvailabilities', async (req, res) => {
+    const RESContract = await RES;
+    const plop = await RESContract.listOffers();
+    res.json(plop);
 });
 
 router.get('/ReadAvailability', (req, res) => {

@@ -21,16 +21,35 @@ router.get('/ReadAvailability/:id', async (req, res) => {
     res.json(plop);
 });
 
-router.post('/requestReservation', (req, res) => {
-    res.json('OK');
+router.post('/requestReservation/:id', async (req, res) => {
+    const RESContract = await RES;
+    const plop = await RESContract.readOffer(req.params.id);
+    res.json(plop);
 });
 
-router.get('/ListReservations', (req, res) => {
-    res.json('OK');
+router.get('/ListReservations', async (req, res) => {
+    const RESContract = await RES;
+    const plop = await RESContract.listReservations();
+    res.json(plop);
 });
 
-router.get('/ReadReservation', (req, res) => {
-    res.json('OK');
+router.get('/ReadReservation', async (req, res) => {
+    const RESContract = await RES;
+    const plop = await RESContract.readReservation();
+    res.json(plop);
 });
+
+router.get('/ConfirmReservation/:id', async (req, res) => {
+    const RESContract = await RES;
+    const plop = await RESContract.confirmReservation(true, req.params.id);
+    res.json(plop);
+});
+
+router.get('/CancelReservation/:id', async (req, res) => {
+    const RESContract = await RES;
+    const plop = await RESContract.confirmReservation(false, req.params.id);
+    res.json(plop);
+});
+
 
 export default router;

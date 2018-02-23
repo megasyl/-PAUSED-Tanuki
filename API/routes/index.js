@@ -1,4 +1,4 @@
-import express				from 'express';
+noimport express				from 'express';
 import { RES, BTU }				from 'eip808-sdk';
 
 const router = express.Router();
@@ -51,9 +51,9 @@ router.get('/CancelReservation/:id', async (req, res) => {
     res.json(plop);
 });
 
-router.get('/BalanceOf/:id', async (req, res) => {
+router.get('/BalanceOf', async (req, res) => {
     const BTUContract = await BTU;
-    const plop = await BTUContract.getBalanceOf(req.param.id);
+    const plop = await BTUContract.getBalanceOf(0xf17f52151ebef6c7334fad080c5704d77216b732);
     res.json(plop);
 });
 

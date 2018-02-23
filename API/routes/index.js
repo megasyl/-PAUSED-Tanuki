@@ -1,5 +1,5 @@
 import express				from 'express';
-import { RES }				from 'eip808-sdk';
+import { RES, BTU }				from 'eip808-sdk';
 
 const router = express.Router();
 
@@ -23,7 +23,7 @@ router.get('/ReadAvailability/:id', async (req, res) => {
 
 router.post('/requestReservation/:id', async (req, res) => {
     const RESContract = await RES;
-    const plop = await RESContract.readOffer(req.params.id);
+    const plop = await RESContract.requestReservation(req.params.id, '0xf17f52151ebef6c7334fad080c5704d77216b732', 'ae6ae8e5ccbfb0459040');
     res.json(plop);
 });
 
@@ -48,6 +48,12 @@ router.get('/ConfirmReservation/:id', async (req, res) => {
 router.get('/CancelReservation/:id', async (req, res) => {
     const RESContract = await RES;
     const plop = await RESContract.confirmReservation(false, req.params.id);
+    res.json(plop);
+});
+
+router.get('/BalanceOf/:id', async (req, res) => {
+    const BTUContract = await BTU;
+    const plop = await BTUContract.getBalanceOf(req.param.id);
     res.json(plop);
 });
 
